@@ -25,7 +25,9 @@ In diesem Abschnitt wird gezeigt, welche Vorbereitungen getroffen werden müssen
 
 ### 2.1 Hardwarekomponenten
 
-(+ Bilder)
+![Arduino](images/arduino_nano33_ble_sense.png)
+![OV7675](images/camera_OV7675.png)
+![M5Stick](images/M5StickC_PLUS.png)
 
 ### 2.2 Edge Impulse
 - beschreibung wofür
