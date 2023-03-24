@@ -24,10 +24,26 @@ Ziel ist nicht die Erstellung eines fertigen Prototypen oder eine vollwertig fun
 In diesem Abschnitt wird gezeigt, welche Vorbereitungen getroffen werden müssen, um den Prototypen zum Laufen zu bringen.
 
 ### 2.1 Hardwarekomponenten
+Für den Prototypen sind drei Hardwarekomponenten relevant, um den Müll zu erkennen und die erkannte Müllart auf einem Display auszugeben:
+1. Microcontroller Nano 33 BLE Sense
+2. Kameramodul OV7675
+3. M5StickC PLUS.
 
+Die Kommunikation zwischen dem Nano 33 und dem M5Stick wird über Bluetooth umgesetzt, wobei der Nano 33 als zentrales Gerät und der M5Stick als Peripheriegerät fungiert.
+
+1. Der Microcontroller Nano 33 BLE Sense von Arduino ist das Herzstück des ganzen. Auf diesem Controller wird der Code für die Erkennung des Mülls raufgespielt und zusätzlich der Code für die Bluetoothkommunikation zum Display (M5StickC PLUS). \
 ![Arduino](images/arduino_nano33_ble_sense.png)
+
+2. Das Kameramodul dient zur Aufnahme des Objekts.
 ![OV7675](images/camera_OV7675.png)
+
+3. Zum Anzeigen der erkannten Müllart wird der M5Stick C PLUS verwendet. In ihm steckt ein ESP-32-PICO Mini. Für die Bluetoothkommunikation wird hierauf der Peripheriecode gespielt.
 ![M5Stick](images/M5StickC_PLUS.png)
+
+Der Microcontroller und das Kameramodul können über ein Board, das sogenannte *Tiny Machine Learning Shield*, verbunden werden.\
+![Hardware](images/hardware.png)
+![HardwareConncted](images/hardware_connected.png)
+
 
 ### 2.2 Edge Impulse
 - beschreibung wofür
