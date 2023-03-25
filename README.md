@@ -63,12 +63,12 @@ In diesem Abschnitt wird die Müllerkennung umgesetzt.
 - triber für kamera
 - triber für m5stick
 
-1. Firmware Nano 33 BLE Sense aktualisieren
+1. Firmware Nano 33 BLE Sense aktualisieren \
 Es kann notwendig sein, ersteinmal die aktuelle Firmware des Nano zu aktualisieren und zu flashen. Dafür folgende zip-Datei herunterladen und entsprechendes Script für das eigene Betriebssystem öffnen: [Nano 33 BLE Sense board Edge Impulse firmware](https://cdn.edgeimpulse.com/firmware/arduino-nano-33-ble-sense.zip "Nano 33 BLE Sense firmware").
 
 (Screenshot von flashen einfügen)
 
-2. Verbinden zu Edge Impulse
+2. Verbinden zu Edge Impulse \
 In cmd/Terminal folgenden Befehl eingeben, um den Nano mit Edge Impulse zu verbinden.
 ```
 edge-impulse-daemon
@@ -78,14 +78,14 @@ edge-impulse-daemon
 3. Triber für Kameramodul/USB-Anschluss runterladen: \
 [USB-Treiber von SiLabs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers "USB-Treiber von SiLabs")
 
-4. Triber/Library für M5Stick
+4. Triber/Library für M5Stick \
 * USB-Triber runterladen: https://ftdichip.com/drivers/vcp-drivers/
 > Ggfs. muss die Sicherheitseinstellung unter macOS angepasst werden. \
 > System Preferences -> Security and Privacy -> General -> Allow downloadable apps from the following locations -> App Store and Approved Developer Options
 
 * Arduino IDE öffnen und auf *Arduino IDE -> Settings* gehen und folgenden Link in die Sektion *Additional boards manager URLs* einfügen: https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_index.json
 
-* Nun Boardtreiber für den M5StickC installieren. Dazu unter *Boards Manager* nach *M5Stack* suchen und vorgeschlagenes Board installieren.
+* Nun Boardtriber für den M5StickC installieren. Dazu unter *Boards Manager* nach *M5Stack* suchen und vorgeschlagenes Board installieren.
 (Screenshot)
 
 * Nun unter *Tools -> Board: ... -> M5Stack -> M5Stick-C-Plus* auswählen.
@@ -93,17 +93,54 @@ edge-impulse-daemon
 * Anschließend die Library installieren. Dazu unter *Library Manager* nach M5StickCPlus suchen und vorgeschlagene Library installieren.
 (Screenshot)
 
-### 3.2 Datensatz erstellen
-- handy mit edge impulse verbinden
-- fotos aufnehmen mit richtigem lable
+### 3.2 Daten
+Für das Modell werden Daten in Form von Bildern benötigt. Das bedeutet, dass das Modell mit Fotos gefüttert werden muss. Dafür kann ganz einfach das eigene Handy mit dem Projekt in Edge Impulse verknüpft werden, sodass dann das Handy für die Aufnahme von Fotos gentuzt werden kann. Sobald das Handy mit mit dem Projekt verknüpft ist, werden die Fotos direkt in das Projekt geladen.
 
-![TakePic](images/take_pictures.png) \
+#### 3.2.1 Datensatz erstellen mit eigener Handykamera
+1. Handy mit Edge Impulse verbinden
 
+* Im Menü auf *Devices* gehen und auf den Button *Connect a new device* wählen. \
+![AddDevice](images/ei_addDevice.png)
+
+* Anschließend bei *Use your mobile phone* auf den Button *Show QR code* klicken. \
+![ConnectPhone](images/ei_connectPhone.png)
+
+* Nun mit dem eigenen Handy den QR-Code scannen. Im Browser sollte nun die Möglichkeit bestehen, Bilder aufzunehmen. Ggfs. müssen Berechtigungen für die Kamera freigegeben werden. Diese bestätigen, da ansonsten keine Fotos aufgenommen werden können. \
+![eiOniPhone](images/ei_oniPhone.png) \
+* Das Label kann über den oberen *Label*-Button geändert werden.
+![TakePic](images/take_pictures.png)
+
+#### 3.2.2 Labels und Klassifizierung
+Für dieses Projekt wurden vier Labels gewählt:
+
+1. *glas* für Glas
+2. *kunststoff* für Kunststoff
+3. *restmuell* für Restmüll
+4. *pappe* für Pappe
+
+Desweiteren wurde noch testweise das Label *noise* hinzugefügt, um bspw. Umgebungs- und Hintergrundrauschen auszufiltern. Dies erweiste sich jedoch als nicht relevant bzw. hatte keinen sichtbaren Einfluss auf die Genauigkeit der Daten und wird deshalb hier nicht weiter erwähnt.
+
+#### 3.2.3 Datensatz und verwendete Objekte
+In Edge Impulse können nun unter dem Menüpunkt *Data acquisition* alle aufgenommen Bilder eingesehen werden und ggfs. editiert werden, wenn bspw. das Label falsch gesetzt wurde. Auch können hier Bilder wieder gelöscht werden.
+
+<img src="images/ei_da.png" width="50%" height="50%">
+
+Der Datensatz besteht vollständig aus eigenständig aufgenommen Daten, d.h. es wurde kein fremder Datensatz (hinzu)gewählt. Der Train/Test-Split wurde auf 80/20 festgesetzt. Insgesamt wurden 1.047 Trainigsdaten und 251 Testdaten erstellt. Von diesen 1.047 Trainingsdaten sind 278 Aufnahmen von Glas, 242 Aufnahmen von Kunststoff, 267 Aufnahmen von Pappe und 242 Aufnahmen von Restmüll. Für Glas wurde ein durchsichtiges, farbloses Konservenglas vor unterschiedlichem Hintergrund und in unterschiedlichen Winkeln aufgenommen. Für Kunststoff eine Süßigkeiten-Plastik-Tüte, für  Restmüll eine Banane und für Pappe ein zusammengeknülltes Papierstück.
 
 ### 3.3 Modell trainieren
 - training
 - testen
 - exportieren in arduino ide
+
+<img src="images/ei_createImp.png" width="50%" height="50%">
+
+<img src="images/ei_paramRgb.png" width="50%" height="50%">
+
+<img src="images/ei_generateF.png" width="50%" height="50%">
+
+<img src="images/ei_model.png" width="50%" height="50%">
+
+<img src="images/ei_accuracy.png" width="50%" height="50%">
 
 ### 3.4 Code in Arduino IDE (besseren Titel wählen)
 
