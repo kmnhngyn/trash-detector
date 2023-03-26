@@ -63,35 +63,35 @@ In diesem Abschnitt wird die Müllerkennung umgesetzt.
 - triber für kamera
 - triber für m5stick
 
-1. Firmware Nano 33 BLE Sense aktualisieren \
-Es kann notwendig sein, ersteinmal die aktuelle Firmware des Nano zu aktualisieren und zu flashen. Dafür folgende zip-Datei herunterladen und entsprechendes Script für das eigene Betriebssystem öffnen: [Nano 33 BLE Sense board Edge Impulse firmware](https://cdn.edgeimpulse.com/firmware/arduino-nano-33-ble-sense.zip "Nano 33 BLE Sense firmware").
+1. Firmware Nano 33 BLE Sense aktualisieren
+* Es kann notwendig sein, ersteinmal die aktuelle Firmware des Nano zu aktualisieren und zu flashen. Dafür folgende zip-Datei herunterladen und entsprechendes Script für das eigene Betriebssystem öffnen: [Nano 33 BLE Sense board Edge Impulse firmware](https://cdn.edgeimpulse.com/firmware/arduino-nano-33-ble-sense.zip "Nano 33 BLE Sense firmware").
 
-(Screenshot von flashen einfügen)
+<img src="images/terminal_flash.png" width="50%" height="50%">
 
-2. Verbinden zu Edge Impulse \
-In cmd/Terminal folgenden Befehl eingeben, um den Nano mit Edge Impulse zu verbinden.
+2. Verbinden zu Edge Impulse
+* In cmd/Terminal folgenden Befehl eingeben, um den Nano mit Edge Impulse zu verbinden.
 ```
 edge-impulse-daemon
 ```
-(Screenshot von temrinal einfügen)
 
-3. Triber für Kameramodul/USB-Anschluss runterladen: \
-[USB-Treiber von SiLabs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers "USB-Treiber von SiLabs")
+3. Triber für Kameramodul/USB-Anschluss runterladen:
+* [USB-Treiber von SiLabs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers "USB-Treiber von SiLabs")
 
-4. Triber/Library für M5Stick \
-* USB-Triber runterladen: https://ftdichip.com/drivers/vcp-drivers/
-> Ggfs. muss die Sicherheitseinstellung unter macOS angepasst werden. \
-> System Preferences -> Security and Privacy -> General -> Allow downloadable apps from the following locations -> App Store and Approved Developer Options
+4. Triber/Library für M5StickC
+* USB-Triber runterladen: [M5Stick USB-Triber](https://ftdichip.com/drivers/vcp-drivers/)
+> Ggfs. muss die Sicherheitseinstellung unter macOS angepasst werden.
+> * *System Preferences -> Security and Privacy -> General -> Allow downloadable apps from the following locations -> App Store and Approved Developer Options*
 
-* Arduino IDE öffnen und auf *Arduino IDE -> Settings* gehen und folgenden Link in die Sektion *Additional boards manager URLs* einfügen: https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_index.json
+* Arduino IDE öffnen und auf *Arduino IDE -> Settings* gehen und folgenden Link in die Sektion *Additional boards manager URLs* einfügen: 
+``https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_index.json``
 
-* Nun Boardtriber für den M5StickC installieren. Dazu unter *Boards Manager* nach *M5Stack* suchen und vorgeschlagenes Board installieren.
-(Screenshot)
+* Nun Boardtriber für den M5StickC Plus installieren. Dazu unter *Boards Manager* nach *M5Stack* suchen und vorgeschlagenes Board installieren. \
+<img src="images/ai_m5_bm.png" width="50%" height="50%">
 
 * Nun unter *Tools -> Board: ... -> M5Stack -> M5Stick-C-Plus* auswählen.
 
-* Anschließend die Library installieren. Dazu unter *Library Manager* nach M5StickCPlus suchen und vorgeschlagene Library installieren.
-(Screenshot)
+* Anschließend die Library installieren. Dazu unter *Library Manager* nach *M5StickCPlus* suchen und vorgeschlagene Library installieren. \
+<img src="images/ai_m5_lib.png" width="50%" height="50%">
 
 ### 3.2 Daten
 Für das Modell werden Daten in Form von Bildern benötigt. Das bedeutet, dass das Modell mit Fotos gefüttert werden muss. Dafür kann ganz einfach das eigene Handy mit dem Projekt in Edge Impulse verknüpft werden, sodass dann das Handy für die Aufnahme von Fotos gentuzt werden kann. Sobald das Handy mit mit dem Projekt verknüpft ist, werden die Fotos direkt in das Projekt geladen.
@@ -128,19 +128,28 @@ In Edge Impulse können nun unter dem Menüpunkt *Data acquisition* alle aufgeno
 Der Datensatz besteht vollständig aus eigenständig aufgenommen Daten, d.h. es wurde kein fremder Datensatz (hinzu)gewählt. Der Train/Test-Split wurde auf 80/20 festgesetzt. Insgesamt wurden 1.047 Trainigsdaten und 251 Testdaten erstellt. Von diesen 1.047 Trainingsdaten sind 278 Aufnahmen von Glas, 242 Aufnahmen von Kunststoff, 267 Aufnahmen von Pappe und 242 Aufnahmen von Restmüll. Für Glas wurde ein durchsichtiges, farbloses Konservenglas vor unterschiedlichem Hintergrund und in unterschiedlichen Winkeln aufgenommen. Für Kunststoff eine Süßigkeiten-Plastik-Tüte, für  Restmüll eine Banane und für Pappe ein zusammengeknülltes Papierstück.
 
 ### 3.3 Modell trainieren
-- training
-- testen
-- exportieren in arduino ide
+Um das Modell zu trainieren, nun im Seitenmenü auf *Impulse design* gehen.
 
+* Create Impulse: Impuls anlegen
 <img src="images/ei_createImp.png" width="50%" height="50%">
 
-<img src="images/ei_paramRgb.png" width="50%" height="50%">
+* Image: Bildparameter einstellen \
+<img src="images/ei_paramRgb.png" width="50%" height="50%"> \
 
+* Generate Features klicken \
 <img src="images/ei_generateF.png" width="50%" height="50%">
 
-<img src="images/ei_model.png" width="50%" height="50%">
+* Transfer learning: Trainingsmodell wählen \
+<img src="images/ei_model.png" width="50%" height="50%"> \
+Es wird das Modell **MobileNetV1 96x96 0.25** gewählt. Dieses ist ein schmales Modell zur Klassifizierung von Daten.
 
-<img src="images/ei_accuracy.png" width="50%" height="50%">
+* Start training: Modell trainieren 
+<img src="images/ei_accuracy.png" width="50%" height="50%"> \
+Nachdem das Modell trainiert wurde, wird die Performence und ein Datenexplorer im Tranining Output angezeigt. Das hier trainierte Modell hat nun eine Genauigkeit von 90,5 Prozent.
+
+* Deployment: Modell exportieren
+- *Arduino library* wählen
+- Auf *Build* klicken und zip-Datei exportieren
 
 ### 3.4 Code in Arduino IDE (besseren Titel wählen)
 
@@ -173,7 +182,7 @@ Der Datensatz besteht vollständig aus eigenständig aufgenommen Daten, d.h. es 
 Es gibt unterschiedlichste Bereiche, wo der Prototyp perspektivisch eingesetzt werden kann. Zum einen wäre es möglich die Waste Detection eimnzusetzen, um manuelle Nacharbeit von Fließarbeitern einzusparen. Zum anderen, könnte  ein Anwendungsfall sein, dass Hinweise oder Alarme bei falscher Mülltrennung gegeben werden, wenn der Müll in die falsche Mülltonne geschmissen wurde. Dies könte auch weitergeführt werden könnten durch das Einbeziehen der Gamification. Gamification ist  Übertragung von spieltypischen Elementen und Vorgängen in spielfremde Zusammenhänge, wodurch auch die Motivation erhöht werden könnte mehr auf die Mülltrennung zu achten. Denn die Idee wäre es, bei jeder richtigen Mülltrennung Punkte zu vergeben. In einem Umfeld wie der Deutschen Bahn wäre sowas sicherlich in Anbretracht der Nachhaltigkeit ein attraktives Projekt. Des Weiteren könnte der Prototyp auch Kindern die Mülltrennung beibringen oder auch blinden Menschen sagen, wo sie ihren Müll wegschmeißen sollen.
 Des Weiteren wäre es möglich den Prototypen einzusetzen, um Kindern die Mülltrennung beizubringen sowie blinden Mensch die Mülltrennung zu erleichtern. 
 Der Prototyp lässt sich natürlich auch um weitere Funktionalitäten ausweiten, wie beispielsweise durch einen Feuchtigkeitssensor. Beispielsweise könnte man somit die Feuchtigkeit im Biomüll messen, um so den Grad der Verwesung herauszufinden. Somit weiß man wann der Biomüll weggeworfen werden muss. 
-In einer Bachelorarbeit "Household Recycle Sorting Bin System Design" von der Bangor Universität wird aufgezeigt wie mittels von Tonsensorik die unterschiedlichen Müllarten, wie Kunststoff-, Glas-, Metall- und Papiermüll, erkannt wurde. Dabei wurde der Müll auf einen Sensor fallen gelassen und der Ton konnte die Müllart einordnen. Das Projekt wurde auch mit der Arduino IDE und Edge Impulse realisiert. 
+In einer Bachelorarbeit "Household Recycle Sorting Bin System Design" von der Bangor Universität wird aufgezeigt wie mittels von Tonsensorik die unterschiedlichen Müllarten, wie Kunststoff-, Glas-, Metall- und Papiermüll, erkannt wurde. Dabei wurde der Müll auf einen Sensor fallen gelassen und der Ton konnte die Müllart einordnen. Das Projekt wurde auch mit der Arduino IDE und Edge Impulse realisiert. (3) Um beispielsweise den unangenehmen Müllgeruch zu vermeidem könnte man zudem umsetzen, dass in Echtzeit das Volumen und der Geruch, also die biologische Abbaubarkeit des darin enthaltenen Abfalls, rückverfolgt wird und den Nutzer benachrichtigt, sobald der festgelegte Schwellenwert für das Volumen überschritten wird oder ein Geruch sich ausbreitet. Da könnte ein Ultraschall-Abstandssensor HRSO4 und ein Halbleiter-Gassensoren der MQ-Serie MQ4 und MQ135, die an dem mikorcontroller angeschlossen werden und zur Füllstands- und biologischen Abbaubarkeitsmessung eingesetzt werden. (4)
 
 
 NOCH NOTIZEN:
@@ -186,3 +195,5 @@ Dadurch wird die Wiederverwendung von recycelbaren Materialien gefördert und de
 1) Alam, P. and Ahmade, K., 2013. Impact of solid waste on health and the environment. International Journal of Sustainable Development and Green Economics (IJSDGE), 2(1), pp.165-168.
 
 2) de Souza Melaré, A.V., González, S.M., Faceli, K. and Casadei, V., 2017. Technologies and decision support systems to aid solid-waste management: a systematic review. Waste management, 59, pp.567-584.
+3) Schoon, L. 2021. Household Recycle Sorting Bin System Design. Bangor Unversity. pp.6-7.
+4) Mbom, H., Abukabar, R., Abolade, O., 2022. Design and implementation of an IoT based smart waste bin for fill level and biodegradability monitoring. Department of Systems Engineering, University of Lagos, Lagos, Nigeria.
