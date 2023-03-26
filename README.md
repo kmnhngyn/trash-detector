@@ -27,9 +27,9 @@ In diesem Abschnitt wird gezeigt, welche Vorbereitungen getroffen werden müssen
 Für den Prototypen sind drei Hardwarekomponenten relevant, um den Müll zu erkennen und die erkannte Müllart auf einem Display auszugeben:
 1. Microcontroller **Nano 33 BLE Sense**
 2. Kameramodul **OV7675**
-3. **M5StickC PLUS.**
+3. **M5StickC Plus.**
 
-Die Kommunikation zwischen dem Nano 33 und dem M5Stick wird über Bluetooth umgesetzt, wobei der Nano 33 als zentrales Gerät und der M5Stick als Peripheriegerät fungiert.
+Die Kommunikation zwischen dem Nano 33 und dem M5StickC Plus wird über Bluetooth umgesetzt, wobei der Nano 33 als zentrales Gerät und der M5StickC Plus als Peripheriegerät fungiert.
 
 1. Der Microcontroller Nano 33 BLE Sense von Arduino ist das Herzstück des ganzen. Auf diesem Controller wird der Code für die Erkennung des Mülls raufgespielt und zusätzlich der Code für die Bluetoothkommunikation zum Display (M5StickC PLUS).
 <img src="images/arduino_nano33_ble_sense.png" width="50%" height="50%">
@@ -37,7 +37,7 @@ Die Kommunikation zwischen dem Nano 33 und dem M5Stick wird über Bluetooth umge
 2. Das Kameramodul dient zur Aufnahme des Objekts.
 <img src="images/camera_OV7675.png" width="50%" height="50%">
 
-3. Zum Anzeigen der erkannten Müllart wird der M5Stick C PLUS verwendet. In ihm steckt ein ESP-32-PICO Mini. Für die Bluetoothkommunikation wird hierauf der Peripheriecode gespielt.
+3. Zum Anzeigen der erkannten Müllart wird der M5StickC Plus verwendet. In ihm steckt ein ESP-32-PICO Mini. Für die Bluetoothkommunikation wird hierauf der Peripheriecode gespielt.
 <img src="images/M5StickC_PLUS.png" width="50%" height="50%">
 
 Der Microcontroller und das Kameramodul können über ein Board, das sogenannte *Tiny Machine Learning Shield*, verbunden werden. \
@@ -58,11 +58,6 @@ Der Microcontroller und das Kameramodul können über ein Board, das sogenannte 
 In diesem Abschnitt wird die Müllerkennung umgesetzt.
 
 ### 3.1 Hardware vorbereiten
-- flashen
-- edge impulse cmd
-- triber für kamera
-- triber für m5stick
-
 1. Firmware Nano 33 BLE Sense aktualisieren
 * Es kann notwendig sein, ersteinmal die aktuelle Firmware des Nano zu aktualisieren und zu flashen. Dafür folgende zip-Datei herunterladen und entsprechendes Script für das eigene Betriebssystem öffnen: [Nano 33 BLE Sense board Edge Impulse firmware](https://cdn.edgeimpulse.com/firmware/arduino-nano-33-ble-sense.zip "Nano 33 BLE Sense firmware").
 
@@ -90,7 +85,7 @@ edge-impulse-daemon
 
 * Nun unter *Tools -> Board: ... -> M5Stack -> M5Stick-C-Plus* auswählen.
 
-* Anschließend die Library installieren. Dazu unter *Library Manager* nach *M5StickCPlus* suchen und vorgeschlagene Library installieren. \
+* Anschließend die Library installieren. Dazu unter *Library Manager* nach *M5StickCPlus* suchen und vorgeschlagene Library installieren.
 <img src="images/ai_m5_lib.png" width="50%" height="50%">
 
 ### 3.2 Daten
@@ -143,6 +138,7 @@ Um das Modell zu trainieren, nun im Seitenmenü auf *Impulse design* gehen.
 
 * Transfer learning: Trainingsmodell wählen
 <img src="images/ei_model.png" width="50%" height="50%">
+
 Es wird das Modell **MobileNetV1 96x96 0.25** gewählt. Dieses ist ein schmales Modell zur Klassifizierung von Daten.
 
 * Start training: Modell trainieren
@@ -159,9 +155,9 @@ Nachdem das Modell trainiert wurde, wird die Performence und ein Datenexplorer i
 Um nun das Modell auf den Nano 33 zu überspielen, muss die zuvor exportiere zip-Datei in Arduino IDE importiert werden. Dazu in Arduino IDE auf *Sketch -> Include Library -> Add .ZIP Library...* und die entsprechende zip-Datei auswählen. \
 <img src="images/ai_import_model.png" width="50%" height="50%">
 
-Die Arduino IDE installiert nun die hinzugefügte Library. Dies kann einige Sekunde/Minuten dauern.
+Die Arduino IDE installiert nun die hinzugefügte Library. Dies kann einige Sekunden/Minuten dauern.
 
-Unter *File -> Examples -> [Name des Projekts in Edge Impulse / zip-Datei]* können verschiedene Codebeispiele gefunden werden. Da für dieses Projekt das Kameramodul relevant ist, kann sich an dem Beispielcode für die Kamera orientiert werden. Angepasst wurde eine weitere Ausgabe und die Klassifizierung eines Objektes bei bereits ab 0,7. Das bedeutet, dass wenn das Modell zu mindestens 70 Prozent eine Klassifzierung erkannt hat, in diesem Fall eine Ausgabe der entsprechenden Müllart gemacht wird.
+Unter *File -> Examples -> [Name des Projekts in Edge Impulse / zip-Datei]* können verschiedene Codebeispiele gefunden werden. Da für dieses Projekt das Kameramodul relevant ist, kann sich an dem Beispielcode für die Kamera orientiert werden. Angepasst wurde eine weitere Ausgabe und die Klassifizierung eines Objektes bereits ab 0,7. Das bedeutet, dass wenn das Modell zu mindestens 70 Prozent eine Klassifzierung erkannt hat, in diesem Fall eine Ausgabe der entsprechenden Müllart gemacht wird.
 
 Der Code kann ausgeführt werden, indem der Nano 33 ausgewählt und der Code hochgeladen wird. \
 <img src="images/ai_upload.png" width="50%" height="50%">
