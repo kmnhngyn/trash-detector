@@ -207,6 +207,13 @@ Dadurch wird die Wiederverwendung von recycelbaren Materialien gefördert und de
 
 ## 5 Trouble shooting
 
+* Reset des Nano 33: Falls bspw. der Code nicht hochgeladen oder der Nano 33 nicht in Arduino erkannt wird, kann es helfen, diesen zu resetten. Dazu zwei Mal auf den kleinen Button hinter dem USB-Port drücken. Die LED auf dem Nano sollte dann orange blinken.
+
+* Beim Flashen:
+Es kann möglich sein, dass das Flashen fehlschlägt. Am besten Arduino IDE schließen/beenden. Oder Arduino resetten.
+
+* Ausgabe im Serial Monitor: Falls keine Ausgabe im Serial Monitor erfolgt, den Code erneut hochladen.
+
 ## Literaturverzechnis
 
 1) Alam, P. and Ahmade, K., 2013. Impact of solid waste on health and the environment. International Journal of Sustainable Development and Green Economics (IJSDGE), 2(1), pp.165-168.
@@ -214,3 +221,10 @@ Dadurch wird die Wiederverwendung von recycelbaren Materialien gefördert und de
 2) de Souza Melaré, A.V., González, S.M., Faceli, K. and Casadei, V., 2017. Technologies and decision support systems to aid solid-waste management: a systematic review. Waste management, 59, pp.567-584.
 3) Schoon, L. 2021. Household Recycle Sorting Bin System Design. Bangor Unversity. pp.6-7.
 4) Mbom, H., Abukabar, R., Abolade, O., 2022. Design and implementation of an IoT based smart waste bin for fill level and biodegradability monitoring. Department of Systems Engineering, University of Lagos, Lagos, Nigeria.
+
+## Weiterführende Links
+[Edge Impulse with the Nano 33 BLE Sense](https://docs.arduino.cc/tutorials/nano-33-ble-sense/edge-impulse)
+
+[Adding sight to your sensors of Nano 33 BLE Sense](https://docs.edgeimpulse.com/docs/tutorials/image-classification)
+
+[TinyML with OV7670 Camera module](https://www.hackster.io/theevildoof/tutorial-part-1-tinyml-with-ov7670-camera-module-1a99e2)
