@@ -24,8 +24,8 @@ Trash Detector ist ein Uniprojekt im Rahmen des HTW Wahlpflicht-Mastermoduls Wis
   - [3.5 Ausgabe auf M5Stick](#kap3-5)
 - [4 Potenziale und Ausblick](#kap4)
 - [5 Trouble shooting](#kap5)
-- [Literaturverzeichnis](#kapLit)
 - [Weiterführende Links](#kapLinks)
+- [Literaturverzeichnis](#kapLit)
 
 <a name="kap1"></a>
 ## 1 Einleitung
@@ -258,6 +258,14 @@ Es kann möglich sein, dass das Flashen fehlschlägt. Am besten Arduino IDE schl
 
 * Ausgabe im Serial Monitor: Falls keine Ausgabe im Serial Monitor erfolgt, den Code erneut hochladen.
 
+<a name="kapLinks"></a>
+## Weiterführende Links
+[Edge Impulse with the Nano 33 BLE Sense](https://docs.arduino.cc/tutorials/nano-33-ble-sense/edge-impulse)
+
+[Adding sight to your sensors of Nano 33 BLE Sense](https://docs.edgeimpulse.com/docs/tutorials/image-classification)
+
+[TinyML with OV7670 Camera module](https://www.hackster.io/theevildoof/tutorial-part-1-tinyml-with-ov7670-camera-module-1a99e2)
+
 <a name="kapLit"></a>
 ## Literaturverzechnis
 
@@ -268,11 +276,3 @@ Es kann möglich sein, dass das Flashen fehlschlägt. Am besten Arduino IDE schl
 [^3]: Schoon, L. 2021. Household Recycle Sorting Bin System Design. Bangor Unversity. pp.6-7.
 
 [^4]: Mbom, H., Abukabar, R., Abolade, O., 2022. Design and implementation of an IoT based smart waste bin for fill level and biodegradability monitoring. Department of Systems Engineering, University of Lagos, Lagos, Nigeria.
-
-<a name="kapLinks"></a>
-## Weiterführende Links
-[Edge Impulse with the Nano 33 BLE Sense](https://docs.arduino.cc/tutorials/nano-33-ble-sense/edge-impulse)
-
-[Adding sight to your sensors of Nano 33 BLE Sense](https://docs.edgeimpulse.com/docs/tutorials/image-classification)
-
-[TinyML with OV7670 Camera module](https://www.hackster.io/theevildoof/tutorial-part-1-tinyml-with-ov7670-camera-module-1a99e2)
