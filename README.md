@@ -225,13 +225,19 @@ Um dies zu ermöglichen, wird von der Kamera im Zweisekundentakt eine Bildaufnah
 <img src="images/detect_paper.png" width="50%" height="50%">
 <img src="images/output_detect_paper.png" width="50%" height="50%">
 
+> Der Code für die Müllerkennung befindet sich im Ordner *trash_detector*.
+
 <a name="kap3-4-2"></a>
 #### 3.4.2 Bluetooth auf Nano 33
 Der Nano 33 dient als zentrales Gerät, das die Daten senden wird. Hierfür muss der entsprechende Code zu dem Code zur Müllerkennung hinzugefügt werden. Dieses Zusammenspiel von Müllerkennung, sowie das Senden von Daten per Bluetooth wurde von der Projektgruppe implementiert und teilweise getestet. Jedoch konnte dies nicht vollständig umgesetzt werden. Grund dafür ist der begrenzte Speicher des Nano 33, wobei es nicht möglich war, beide Anwendungsfälle (Müllerkennung plus Bluetooth) auf den Nano 33 hochzuladen und Fehler zum begrenzten (Arbeits)speicher auftraten. Deshalb sind beide Codekomponenten separat verfügbar und wurden separat voneinander getrennt.
 
+> Der Code für die Bluetoothkommunikation auf dem Nano 33 befindet sich im Ordner *nano_ble_central*.
+
 <a name="kap3-4-3"></a>
 #### 3.4.3 Bluetooth auf M5StickC Plus
 Der Nano 33 sendet via Bluetooth an den M5StickC Plus (Peripheriegerät) entsprechende Daten der Bilderkennung, sodass auf dem Display die erkannte Müllart angezeigt wird. Dafür wird entsprechender Code auf den M5StickC Plus hochgeladen.
+
+> Der Code für die Bluetoothkommunikation auf dem M5StickC Plus befindet sich im Ordner *m5_ble*.
 
 <a name="kap3-5"></a>
 ### 3.5 Ausgabe auf M5Stick
