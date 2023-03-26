@@ -156,10 +156,18 @@ Nachdem das Modell trainiert wurde, wird die Performence und ein Datenexplorer i
 ### 3.4 Code in Arduino IDE (besseren Titel wählen)
 
 #### 3.4.1 Müllerkennung
-- import modell zip als library
-- über examples code für kamera öffnen
-- auf nano spielen
-- in serial monitor ausgabe anzeigen
+Um nun das Modell auf den Nano 33 zu überspielen, muss die zuvor exportiere zip-Datei in Arduino IDE importiert werden. Dazu in Arduino IDE auf *Sketch -> Include Library -> Add .ZIP Library...* und die entsprechende zip-Datei auswählen. \
+<img src="images/ai_import_model.png" width="50%" height="50%">
+
+Die Arduino IDE installiert nun die hinzugefügte Library. Dies kann einige Sekunde/Minuten dauern.
+
+Unter *File -> Examples -> [Name des Projekts in Edge Impulse / zip-Datei]* können verschiedene Codebeispiele gefunden werden. Da für dieses Projekt das Kameramodul relevant ist, kann sich an dem Beispielcode für die Kamera orientiert werden. Angepasst wurde eine weitere Ausgabe und die Klassifizierung eines Objektes bei bereits ab 0,7. Das bedeutet, dass wenn das Modell zu mindestens 70 Prozent eine Klassifzierung erkannt hat, in diesem Fall eine Ausgabe der entsprechenden Müllart gemacht wird.
+
+Der Code kann ausgeführt werden, indem der Nano 33 ausgewählt und der Code hochgeladen wird. \
+<img src="images/ai_upload.png" width="50%" height="50%">
+
+Nachdem der Code angepasst und auf den Nano hochgeladen wurde, kann nun in der Ausgabe vom *Serial Monitor* (Icon mit der Lupe und den Punkten) eingesehen werden, welche Müllart erkannt wird. \
+Um dies zu ermöglichen, wird von der Kamera im Zweisekundentakt eine Bildaufnahme getätigt und klassifiziert. 
 
 <img src="images/detect_glas.png" width="50%" height="50%">
 <img src="images/output_detect_glas.png" width="50%" height="50%">
@@ -174,10 +182,17 @@ Nachdem das Modell trainiert wurde, wird die Performence und ein Datenexplorer i
 <img src="images/output_detect_paper.png" width="50%" height="50%">
 
 #### 3.4.2 Bluetooth auf Nano 33
+Der Nano 33 dient als zentrales Gerät, das die Daten senden wird. Hierfür muss der entsprechende Code zu dem Code zur Müllerkennung hinzugefügt werden. Dieses Zusammenspiel von Müllerkennung, sowie das Senden von Daten per Bluetooth wurde von der Projektgruppe implementiert und teilweise getestet. Jedoch konnte dies nicht vollständig umgesetzt werden. Grund dafür ist der begrenzte Speicher des Nano 33, wobei es nicht möglich war, beide Anwendungsfälle (Müllerkennung plus Bluetooth) auf den Nano 33 hochzuladen und Fehler zum begrenzten (Arbeits)speicher auftraten. Deshalb sind beide Codekomponenten separat verfügbar und wurden separat voneinander getrennt.
 
-#### 3.4.3 Bluetooth auf M5Stick
+#### 3.4.3 Bluetooth auf M5StickC Plus
+Der Nano 33 sendet via Bluetooth an den M5StickC Plus (Peripheriegerät) entsprechende Daten der Bilderkennung, sodass auf dem Display die erkannte Müllart angezeigt wird. Dafür wird entsprechender Code auf den M5StickC Plus hochgeladen.
 
 ### 3.5 Ausgabe auf M5Stick
+Auf dem M5StickC Plus wird die erkannte Müllart ausgegeben. Dafür wurde je nach Müllart die Hintergrundfarbe des Displays angepasst, sodass die Farbe entpsrechend zur Farbe der Mülltonne passt (z.B. blau für Papier/Pappe).
+Da es zu Problemen bezüglich der Speicherkapazität kam (siehe Kapitel 3.4.2 Bluetooth auf Nano 33), ist die Ausgabe der Müllart hard-gecodet, wodurch eine automatische Anzeige der Müllart im Siebensekundentakt wechselt.
+
+<img src="images/m5_display.gif">
+
 
 ## 4 Potenziale und Ausblick
 
