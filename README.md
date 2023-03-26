@@ -25,24 +25,24 @@ In diesem Abschnitt wird gezeigt, welche Vorbereitungen getroffen werden müssen
 
 ### 2.1 Hardwarekomponenten
 Für den Prototypen sind drei Hardwarekomponenten relevant, um den Müll zu erkennen und die erkannte Müllart auf einem Display auszugeben:
-1. Microcontroller Nano 33 BLE Sense
-2. Kameramodul OV7675
-3. M5StickC PLUS.
+1. Microcontroller **Nano 33 BLE Sense**
+2. Kameramodul **OV7675***
+3. **M5StickC PLUS.**
 
 Die Kommunikation zwischen dem Nano 33 und dem M5Stick wird über Bluetooth umgesetzt, wobei der Nano 33 als zentrales Gerät und der M5Stick als Peripheriegerät fungiert.
 
-1. Der Microcontroller Nano 33 BLE Sense von Arduino ist das Herzstück des ganzen. Auf diesem Controller wird der Code für die Erkennung des Mülls raufgespielt und zusätzlich der Code für die Bluetoothkommunikation zum Display (M5StickC PLUS). \
-![Arduino](images/arduino_nano33_ble_sense.png)
+1. Der Microcontroller Nano 33 BLE Sense von Arduino ist das Herzstück des ganzen. Auf diesem Controller wird der Code für die Erkennung des Mülls raufgespielt und zusätzlich der Code für die Bluetoothkommunikation zum Display (M5StickC PLUS).
+<img src="images/arduino_nano33_ble_sense.png" width="50%" height="50%">
 
-2. Das Kameramodul dient zur Aufnahme des Objekts. \
-![OV7675](images/camera_OV7675.png)
+2. Das Kameramodul dient zur Aufnahme des Objekts.
+<img src="images/camera_OV7675.png" width="50%" height="50%">
 
-3. Zum Anzeigen der erkannten Müllart wird der M5Stick C PLUS verwendet. In ihm steckt ein ESP-32-PICO Mini. Für die Bluetoothkommunikation wird hierauf der Peripheriecode gespielt. \
-![M5Stick](images/M5StickC_PLUS.png)
+3. Zum Anzeigen der erkannten Müllart wird der M5Stick C PLUS verwendet. In ihm steckt ein ESP-32-PICO Mini. Für die Bluetoothkommunikation wird hierauf der Peripheriecode gespielt.
+<img src="images/M5StickC_PLUS.png" width="50%" height="50%">
 
-Der Microcontroller und das Kameramodul können über ein Board, das sogenannte *Tiny Machine Learning Shield*, verbunden werden.\
-![Hardware](images/hardware.png) \
-![HardwareConnected](images/hardware_connected.png)
+Der Microcontroller und das Kameramodul können über ein Board, das sogenannte *Tiny Machine Learning Shield*, verbunden werden.
+<img src="images/hardware.png" width="50%" height="50%"> \
+<img src="images/hardware_connected.png" width="50%" height="50%">
 
 ### 2.2 Edge Impulse
 - beschreibung wofür
@@ -106,9 +106,10 @@ Für das Modell werden Daten in Form von Bildern benötigt. Das bedeutet, dass d
 ![ConnectPhone](images/ei_connectPhone.png)
 
 * Nun mit dem eigenen Handy den QR-Code scannen. Im Browser sollte nun die Möglichkeit bestehen, Bilder aufzunehmen. Ggfs. müssen Berechtigungen für die Kamera freigegeben werden. Diese bestätigen, da ansonsten keine Fotos aufgenommen werden können. \
-![eiOniPhone](images/ei_oniPhone.png) \
+<img src="images/take_pictures.png" width="50%" height="50%">
+<img src="images/ei_oniPhone.png" width="50%" height="50%">
+
 * Das Label kann über den oberen *Label*-Button geändert werden.
-![TakePic](images/take_pictures.png)
 
 #### 3.2.2 Labels und Klassifizierung
 Für dieses Projekt wurden vier Labels gewählt:
