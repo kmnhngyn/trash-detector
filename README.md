@@ -3,6 +3,8 @@ Trash Detector ist ein Uniprojekt im Rahmen des HTW Wahlpflicht-Mastermoduls Wis
 
 *Hinweis: Der hier vorgestellte Prototyp basiert zu diesem Zeitpunkt auf hard-gecodeten Ausgabewerten und gibt keine Echtdaten aus. Dies kann jedoch erzielt werden, wenn eine Hardware mit mehr Arbeitsspeicher verwendet wird. Die hier verwendete Hardware bietet nur einen begrenzten Speicher von 1 MB an.*
 
+## Inhaltsverzeichnis
+
 - [1 Einleitung](#kap1)
   - [1.1 Motivation](#kap1-1)
   - [1.2 Ziel des Projektes](#kap1-2)
@@ -26,6 +28,7 @@ Trash Detector ist ein Uniprojekt im Rahmen des HTW Wahlpflicht-Mastermoduls Wis
 - [5 Trouble shooting](#kap5)
 - [Weiterführende Links](#kapLinks)
 - [Literaturverzeichnis](#kapLit)
+
 
 <a name="kap1"></a>
 ## 1 Einleitung
@@ -196,7 +199,7 @@ Nachdem das Modell trainiert wurde, wird die Performence und ein Datenexplorer i
   - Auf *Build* klicken und zip-Datei exportieren
 
 <a name="kap3-4"></a>
-### 3.4 Code in Arduino IDE (besseren Titel wählen)
+### 3.4 Code in Arduino IDE
 
 <a name="kap3-4-1"></a>
 #### 3.4.1 Müllerkennung
