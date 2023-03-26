@@ -48,7 +48,7 @@ Konkret soll der Prototyp dazu beitragen, dass der Müllsortierprozess effizient
 
 Umgesetzt wird dies durch die visuelle Aufnahme von verschiedenen Müllarten. Bildmaterial von Müll wird dabei klassifiziert und erhalten Labels, womit später das TinyML-Modell trainiert und getestet wird. Über die Kamera wird nahezu live der Müll erkannt und die Müllart auf einem separaten Display ausgegeben.
 
-Ziel ist nicht die Erstellung eines fertigen Prototypen oder eine vollwertig funktionierende Hard- und/oder Software.
+Ziel ist nicht die Erstellung eines fertigen Prototypen oder eine vollwertig funktionierenden Hard- und/oder Software.
 
 <a name="kap2"></a>
 ## 2 Aufbau und Vorbereitung des Prototypen
@@ -63,7 +63,7 @@ Für den Prototypen sind drei Hardwarekomponenten relevant, um den Müll zu erke
 
 Die Kommunikation zwischen dem Nano 33 und dem M5StickC Plus wird über Bluetooth umgesetzt, wobei der Nano 33 als zentrales Gerät und der M5StickC Plus als Peripheriegerät fungiert.
 
-1. Der Microcontroller Nano 33 BLE Sense von Arduino ist das Herzstück des ganzen. Auf diesem Controller wird der Code für die Erkennung des Mülls raufgespielt und zusätzlich der Code für die Bluetoothkommunikation zum Display (M5StickC PLUS).
+1. Der Microcontroller Nano 33 BLE Sense von Arduino ist das Herzstück des Ganzen. Auf diesem Controller wird der Code für die Erkennung des Mülls raufgespielt und zusätzlich der Code für die Bluetoothkommunikation zum Display (M5StickC PLUS).
 <img src="images/arduino_nano33_ble_sense.png" width="50%" height="50%">
 
 2. Das Kameramodul dient zur Aufnahme des Objekts.
@@ -103,7 +103,7 @@ In diesem Abschnitt wird die Müllerkennung umgesetzt.
 <a name="kap3-1"></a>
 ### 3.1 Hardware vorbereiten
 1. Firmware Nano 33 BLE Sense aktualisieren
-* Es kann notwendig sein, ersteinmal die aktuelle Firmware des Nano zu aktualisieren und zu flashen. Dafür folgende zip-Datei herunterladen und entsprechendes Script für das eigene Betriebssystem öffnen: [Nano 33 BLE Sense board Edge Impulse firmware](https://cdn.edgeimpulse.com/firmware/arduino-nano-33-ble-sense.zip "Nano 33 BLE Sense firmware").
+* Es kann notwendig sein, erstmal die aktuelle Firmware des Nano zu aktualisieren und zu flashen. Dafür folgende zip-Datei herunterladen und entsprechendes Script für das eigene Betriebssystem öffnen: [Nano 33 BLE Sense board Edge Impulse firmware](https://cdn.edgeimpulse.com/firmware/arduino-nano-33-ble-sense.zip "Nano 33 BLE Sense firmware").
 
 <img src="images/terminal_flash.png" width="50%" height="50%">
 
@@ -162,7 +162,7 @@ Für dieses Projekt wurden vier Labels gewählt:
 3. *restmuell* für Restmüll
 4. *pappe* für Pappe
 
-Desweiteren wurde noch testweise das Label *noise* hinzugefügt, um bspw. Umgebungs- und Hintergrundrauschen auszufiltern. Dies erweiste sich jedoch als nicht relevant bzw. hatte keinen sichtbaren Einfluss auf die Genauigkeit der Daten und wird deshalb hier nicht weiter erwähnt.
+Des Weiteren wurde noch testweise das Label *noise* hinzugefügt, um bspw. Umgebungs- und Hintergrundrauschen auszufiltern. Dies erweiste sich jedoch als nicht relevant bzw. hatte keinen sichtbaren Einfluss auf die Genauigkeit der Daten und wird deshalb hier nicht weiter erwähnt.
 
 <a name="kap3-2-3"></a>
 #### 3.2.3 Datensatz und verwendete Objekte
@@ -208,7 +208,7 @@ Um nun das Modell auf den Nano 33 zu überspielen, muss die zuvor exportiere zip
 
 Die Arduino IDE installiert nun die hinzugefügte Library. Dies kann einige Sekunden/Minuten dauern.
 
-Unter *File -> Examples -> [Name des Projekts in Edge Impulse / zip-Datei]* können verschiedene Codebeispiele gefunden werden. Da für dieses Projekt das Kameramodul relevant ist, kann sich an dem Beispielcode für die Kamera orientiert werden. Angepasst wurde eine weitere Ausgabe und die Klassifizierung eines Objektes bereits ab 0,7. Das bedeutet, dass wenn das Modell zu mindestens 70 Prozent eine Klassifzierung erkannt hat, in diesem Fall eine Ausgabe der entsprechenden Müllart gemacht wird.
+Unter *File -> Examples -> [Name des Projekts in Edge Impulse / zip-Datei]* können verschiedene Codebeispiele gefunden werden. Da für dieses Projekt das Kameramodul relevant ist, kann sich an dem Beispielcode für die Kamera orientiert werden. Angepasst wurde eine weitere Ausgabe und die Klassifizierung eines Objektes bereits ab 0,7. Das bedeutet, dass wenn das Modell zumindest 70 Prozent eine Klassifzierung erkannt hat, in diesem Fall eine Ausgabe der entsprechenden Müllart gemacht wird.
 
 Der Code kann ausgeführt werden, indem der Nano 33 ausgewählt und der Code hochgeladen wird. \
 <img src="images/ai_upload.png" width="50%" height="50%">
@@ -252,7 +252,9 @@ Da es zu Problemen bezüglich der Speicherkapazität kam (siehe Kapitel 3.4.2 Bl
 <a name="kap4"></a>
 ## 4 Potenziale und Ausblick
 
-Es gibt unterschiedlichste Bereiche, wo der Prototyp perspektivisch eingesetzt werden kann. Zum einen wäre es möglich die Waste Detection einzusetzen, um manuelle Nacharbeit von Fließarbeitern einzusparen. Zum anderen, könnte  ein Anwendungsfall sein, dass Hinweise oder Alarme bei falscher Mülltrennung gegeben werden, wenn der Müll in die falsche Mülltonne geschmissen wurde. Dies könnte auch weitergeführt werden durch das Einbeziehen der Gamification. Gamification ist  Übertragung von spieltypischen Elementen und Vorgängen in spielfremde Zusammenhänge, wodurch auch die Motivation erhöht werden könnte mehr auf die Mülltrennung zu achten. Denn die Idee wäre es, bei jeder richtigen Mülltrennung Punkte zu vergeben. In einem Umfeld, wie der Deutschen Bahn, wäre sowas sicherlich, in Anbretracht der Nachhaltigkeit, ein attraktives Projekt. Des Weiteren könnte der Prototyp auch Kindern die Mülltrennung beibringen oder auch blinden Menschen sagen, wo sie ihren Müll wegschmeißen sollen. Auch Paper, wie "Deep learning networks for real-time regional domestic waste detection"- zeigen auf, wie Waste Detection für den eigenen Haushalt sinnvoll genutzt werden kann und wie wichtig es ist, dass sich jeder mit Mülltrennung auseinander setzt. [^3] 
+Es gibt unterschiedlichste Bereiche, wo der Prototyp perspektivisch eingesetzt werden kann. Zum einen wäre es möglich die Waste Detection einzusetzen, um manuelle Nacharbeit von Fließarbeitern einzusparen.
+Zum anderen, könnte  ein Anwendungsfall sein, dass Hinweise oder Alarme bei falscher Mülltrennung gegeben werden, wenn der Müll in die falsche Mülltonne geschmissen wurde. Dies könnte auch weitergeführt werden durch das Einbeziehen der Gamification. Gamification ist  Übertragung von spieltypischen Elementen und Vorgängen in spielfremde Zusammenhänge, wodurch auch die Motivation erhöht werden könnte mehr auf die Mülltrennung zu achten. Denn die Idee wäre es, bei jeder richtigen Mülltrennung Punkte zu vergeben. In einem Umfeld, wie der Deutschen Bahn, wäre sowas sicherlich, in Anbretracht der Nachhaltigkeit, ein attraktives Projekt. 
+Des Weiteren könnte der Prototyp auch Kindern die Mülltrennung beibringen oder auch blinden Menschen sagen, wo sie ihren Müll wegschmeißen sollen. Auch Paper, wie "Deep learning networks for real-time regional domestic waste detection"- zeigen auf, wie Waste Detection für den eigenen Haushalt sinnvoll genutzt werden kann und wie wichtig es ist, dass sich jeder mit Mülltrennung auseinander setzt. [^3] 
 Der Prototyp lässt sich natürlich auch um weitere Funktionalitäten ausweiten, wie beispielsweise durch einen Feuchtigkeitssensor. Beispielsweise könnte man somit die Feuchtigkeit im Biomüll messen, um so den Grad der Verwesung herauszufinden. Somit weiß man wann der Biomüll weggeworfen werden muss. 
 In einer Bachelorarbeit "Household Recycle Sorting Bin System Design" von der Bangor Universität wird aufgezeigt wie, mittels von Tonsensorik, die unterschiedlichen Müllarten, wie Kunststoff-, Glas-, Metall- und Papiermüll, erkannt wurden. Dabei wurde der Müll auf einen Sensor fallen gelassen und durch den Ton konnte die Müllart eingeordnet. Das Projekt wurde auch mit der Arduino IDE und Edge Impulse realisiert. [^4] 
 Um beispielsweise den unangenehmen Müllgeruch zu vermeidem könnte man zudem umsetzen, dass in Echtzeit das Volumen und der Geruch, also die biologische Abbaubarkeit des darin enthaltenen Abfalls, rückverfolgt wird und den Nutzer benachrichtigt, sobald der festgelegte Schwellenwert für das Volumen überschritten wird oder ein Geruch sich ausbreitet. Da könnte ein Ultraschall-Abstandssensor HRSO4 und ein Halbleiter-Gassensoren der MQ-Serie MQ4 und MQ135, die an dem Mikrocontroller angeschlossen werden und zur Füllstands- und biologischen Abbaubarkeitsmessung eingesetzt werden. [^5] 
