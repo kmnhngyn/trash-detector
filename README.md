@@ -26,7 +26,7 @@ In diesem Abschnitt wird gezeigt, welche Vorbereitungen getroffen werden müssen
 ### 2.1 Hardwarekomponenten
 Für den Prototypen sind drei Hardwarekomponenten relevant, um den Müll zu erkennen und die erkannte Müllart auf einem Display auszugeben:
 1. Microcontroller **Nano 33 BLE Sense**
-2. Kameramodul **OV7675***
+2. Kameramodul **OV7675**
 3. **M5StickC PLUS.**
 
 Die Kommunikation zwischen dem Nano 33 und dem M5Stick wird über Bluetooth umgesetzt, wobei der Nano 33 als zentrales Gerät und der M5Stick als Peripheriegerät fungiert.
@@ -40,8 +40,8 @@ Die Kommunikation zwischen dem Nano 33 und dem M5Stick wird über Bluetooth umge
 3. Zum Anzeigen der erkannten Müllart wird der M5Stick C PLUS verwendet. In ihm steckt ein ESP-32-PICO Mini. Für die Bluetoothkommunikation wird hierauf der Peripheriecode gespielt.
 <img src="images/M5StickC_PLUS.png" width="50%" height="50%">
 
-Der Microcontroller und das Kameramodul können über ein Board, das sogenannte *Tiny Machine Learning Shield*, verbunden werden.
-<img src="images/hardware.png" width="50%" height="50%"> \
+Der Microcontroller und das Kameramodul können über ein Board, das sogenannte *Tiny Machine Learning Shield*, verbunden werden. \
+<img src="images/hardware.png" width="50%" height="50%">
 <img src="images/hardware_connected.png" width="50%" height="50%">
 
 ### 2.2 Edge Impulse
@@ -105,7 +105,8 @@ Für das Modell werden Daten in Form von Bildern benötigt. Das bedeutet, dass d
 * Anschließend bei *Use your mobile phone* auf den Button *Show QR code* klicken. \
 ![ConnectPhone](images/ei_connectPhone.png)
 
-* Nun mit dem eigenen Handy den QR-Code scannen. Im Browser sollte nun die Möglichkeit bestehen, Bilder aufzunehmen. Ggfs. müssen Berechtigungen für die Kamera freigegeben werden. Diese bestätigen, da ansonsten keine Fotos aufgenommen werden können. \
+* Nun mit dem eigenen Handy den QR-Code scannen. Im Browser sollte nun die Möglichkeit bestehen, Bilder aufzunehmen. Ggfs. müssen Berechtigungen für die Kamera freigegeben werden. Diese bestätigen, da ansonsten keine Fotos aufgenommen werden können.
+
 <img src="images/take_pictures.png" width="50%" height="50%">
 <img src="images/ei_oniPhone.png" width="50%" height="50%">
 
@@ -134,23 +135,23 @@ Um das Modell zu trainieren, nun im Seitenmenü auf *Impulse design* gehen.
 * Create Impulse: Impuls anlegen
 <img src="images/ei_createImp.png" width="50%" height="50%">
 
-* Image: Bildparameter einstellen \
-<img src="images/ei_paramRgb.png" width="50%" height="50%"> \
+* Image: Bildparameter einstellen
+<img src="images/ei_paramRgb.png" width="50%" height="50%">
 
-* Generate Features klicken \
+* Generate Features klicken
 <img src="images/ei_generateF.png" width="50%" height="50%">
 
-* Transfer learning: Trainingsmodell wählen \
-<img src="images/ei_model.png" width="50%" height="50%"> \
+* Transfer learning: Trainingsmodell wählen
+<img src="images/ei_model.png" width="50%" height="50%">
 Es wird das Modell **MobileNetV1 96x96 0.25** gewählt. Dieses ist ein schmales Modell zur Klassifizierung von Daten.
 
-* Start training: Modell trainieren 
-<img src="images/ei_accuracy.png" width="50%" height="50%"> \
+* Start training: Modell trainieren
+<img src="images/ei_accuracy.png" width="50%" height="50%">
 Nachdem das Modell trainiert wurde, wird die Performence und ein Datenexplorer im Tranining Output angezeigt. Das hier trainierte Modell hat nun eine Genauigkeit von 90,5 Prozent.
 
 * Deployment: Modell exportieren
-- *Arduino library* wählen
-- Auf *Build* klicken und zip-Datei exportieren
+  - *Arduino library* wählen
+  - Auf *Build* klicken und zip-Datei exportieren
 
 ### 3.4 Code in Arduino IDE (besseren Titel wählen)
 
